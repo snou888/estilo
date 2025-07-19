@@ -7,25 +7,73 @@ import Products from './pages/Products'
 import AboutUs from './pages/AboutUs'
 import FAQ from './pages/FAQ'
 import Contact from './pages/Contact'
+import AdminLayout from './pages/admin/AdminLayout'
+import Dashboard from './pages/admin/Dashboard'
+import ProductsAdmin from './pages/admin/ProductsAdmin'
+import OrdersAdmin from './pages/admin/OrdersAdmin'
+import UsersAdmin from './pages/admin/UsersAdmin'
 import { CartProvider } from './context/CartContext'
 
 function App() {
   return (
     <CartProvider>
       <Router>
-        <div className="min-h-screen bg-white text-black">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <Routes>
+          {/* Routes publiques */}
+          <Route path="/" element={
+            <div className="min-h-screen bg-white text-black">
+              <Header />
+              <main>
+                <Home />
+              </main>
+              <Footer />
+            </div>
+          } />
+          <Route path="/products" element={
+            <div className="min-h-screen bg-white text-black">
+              <Header />
+              <main>
+                <Products />
+              </main>
+              <Footer />
+            </div>
+          } />
+          <Route path="/about" element={
+            <div className="min-h-screen bg-white text-black">
+              <Header />
+              <main>
+                <AboutUs />
+              </main>
+              <Footer />
+            </div>
+          } />
+          <Route path="/faq" element={
+            <div className="min-h-screen bg-white text-black">
+              <Header />
+              <main>
+                <FAQ />
+              </main>
+              <Footer />
+            </div>
+          } />
+          <Route path="/contact" element={
+            <div className="min-h-screen bg-white text-black">
+              <Header />
+              <main>
+                <Contact />
+              </main>
+              <Footer />
+            </div>
+          } />
+          
+          {/* Routes admin */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="products" element={<ProductsAdmin />} />
+            <Route path="orders" element={<OrdersAdmin />} />
+            <Route path="users" element={<UsersAdmin />} />
+          </Route>
+        </Routes>
       </Router>
     </CartProvider>
   )
